@@ -4,11 +4,63 @@ import { StoreContext } from '../../context/StoreContext';
 
 const Cart = () => {
 
-    const{cartItems, food_list, reremoveCart, } = useContext(StoreContext)
+    const { cartItems, food_list, removeCart, } = useContext(StoreContext)
 
     return (
         <div className='cart'>
-            
+            <div className="cart-items">
+                <div className="cart-items-title">
+                    <p>Items</p>
+                    <p>Title</p>
+                    <p>Price</p>
+                    <p>Quantity</p>
+                    <p>Total</p>
+                    <p>Remove</p>
+                </div>
+                <br />
+                <hr />
+                {
+                    food_list.map((item, index) => {
+                        if (cartItems[item.id] > 0) {
+                            return (
+                                <div>
+                                    <div className="cart-items-title cart-items-item">
+                                        <img src={item.image} alt="" />
+                                        <p>{item.name}</p>
+                                        <p>${item.price}</p>
+                                        <p>{cartItems[item.id]}</p>
+                                        <p>${item.price * cartItems[item.id]}</p>
+                                        <p className='cross' onClick={()=>removeCart(item.id)}>x</p>
+                                    </div>
+                                    <hr />
+                                </div>
+                            )
+                        } else {
+
+                        }
+                    })
+                }
+            </div>
+            <div className="cart-bottom">
+                <div className="cart-total">
+                    <h2>Cart Total</h2>
+                    <div>
+                        <div className="cart-total-details">
+                            <p>Subtotal</p>
+                            <p>{0}</p>
+                        </div>
+                        <div className="cart-total-details">
+                            <p>Delivery Fee</p>
+                            <p>{0}</p>
+                        </div>
+                        <div className="cart-total-details">
+                            <p>Total</p>
+                            <p>{0}</p>
+                        </div>
+                    </div>
+                    <button>PROCEED TO CHEKOUT</button>
+                </div>
+            </div>
         </div>
     );
 };
