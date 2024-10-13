@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors'
 import { connectDB } from './config/db.js';
 import foodRouter from './routes/foodRoute.js';
+import userRouter from './routes/userRoutes.js';
 
 
 
@@ -23,6 +24,7 @@ connectDB()
 // api endpoints 
 app.use("/api/food",foodRouter)
 app.use('/images',express.static('uploads'))
+app.use('api/user',userRouter)
 
 
 
